@@ -1,0 +1,122 @@
+[CHK_CONFIG]
+debug = 1 
+check_host = 南京230
+msg_phone = 18795952348,13952008822
+#disk high level
+disk_chk_percent = 85
+#memory high level
+mem_chk_percent = 90
+#cpu high level
+cpu_chk_percent = 85
+url = http://58.213.29.51:18098/TranRunsTX/servlet/WeiXiServlet
+
+[DB_CONFIG]
+enable = 1
+db_string = trs/trs123@192.168.1.230:1521/trsdb
+tbs_chk_percent = 90
+
+[TABLE_CHK_IMSI]
+enable = 1
+check_sql = select count(1) from t_datadetect_info where detecttime >sysdate -10/1440 and detecttime <sysdate
+rows_limit = 10
+[TABLE_CHK_MAC]
+enable = 1
+check_sql = select count(1) from data_wifi_mac where detecttime >sysdate -10/1440 and detecttime <sysdate
+rows_limit = 10
+[TABLE_CHK_DEVICE]
+enable = 1
+check_sql = select count(1) from device_info  where hartbeat_time > sysdate - 10/1440 and hartbeat_time < sysdate
+rows_limit = 10
+
+#----------------Python -----------------------#
+[PROC_FTP_4G]
+enable = 1
+ps_command = ps -ef|grep ftp_4g
+restart_command = 
+[PROC_DATA_4G]
+enable = 1
+ps_command = ps -ef|grep data_4g_db
+restart_command = 
+[PROC_DEVICE_4G]
+enable = 1
+ps_command = ps -ef|grep device_4g_db
+restart_command = 
+[PROC_SH_4G]
+enable = 1
+ps_command = ps -ef|grep shanghai4g_zm.py
+restart_command = 
+[PROC_FTP_2G]
+enable = 0
+ps_command = ps -ef|grep ftp_2g
+restart_command = 
+[PROC_DATA_2G]
+enable = 1
+ps_command = ps -ef|grep data_2g_db
+restart_command = 
+[PROC_DEVICE_2G]
+enable = 1
+ps_command = ps -ef|grep device_2g_db
+restart_command =
+[PROC_FTP_WIFI]
+enable = 0
+ps_command = ps -ef|grep ftp_wifi
+restart_command = 
+[PROC_DATA_WIFI]
+enable = 1
+ps_command = ps -ef|grep data_wifi
+restart_command = 
+[PROC_DEVICE_WIFI]
+enable = 1
+ps_command = ps -ef|grep device_wifi
+restart_command =
+[PROC_FTP_DW]
+enable = 0
+ps_command = ps -ef|grep  ftp_dw
+restart_command =
+[PROC_DATA_DW]
+enable = 1
+ps_command = ps -ef|grep dw_db
+restart_command =
+#----------- Java --------------------#
+[PROC_Trs_2g]
+enable = 1
+ps_command = ps -ef|grep java|grep Trs-2g
+restart_command =
+
+[PROC_Trs_wifi]
+enable = 1
+ps_command = ps -ef|grep java|grep Trs-wifi
+restart_command =
+[PROC_Trs_dw]
+enable = 1
+ps_command = ps -ef|grep java|grep Trs-dw
+restart_command =
+[PROC_Trs_web]
+enable = 1
+ps_command = ps -ef|grep java|grep Trs-web
+restart_command =
+
+#------------- FILE -------------------#
+[FILE_GY]
+# Sichuan  Guangyuan
+enable = 1
+file_path = /home/oracle/rd_share_data/rd_share_data_guangyuan/backup
+dir_date_format = %Y%m%d
+file_pattern = C*_839_190111_sg*
+time_min = 5
+
+[FILE_HM]
+# Jiangsu  Haimen
+enable = 1
+file_path = /home/oracle/rd_share_data/rd_share_data_haimen/backup
+dir_date_format = %Y%m%d
+file_pattern = HLW_*.log
+time_min = 5
+
+[FILE_XH]
+# Guangdong  Xinhui
+enable = 1
+file_path = /home/oracle/rd_share_data/rd_share_data_xinhui/backup/
+dir_date_format = %Y%m%d
+file_pattern = THIRD_*.dat
+time_min = 5
