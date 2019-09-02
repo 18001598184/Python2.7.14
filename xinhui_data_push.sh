@@ -1,0 +1,1 @@
+nohup /usr/local/bin/python ./xinhui_data_push.py  > /dev/null 2>&1 & 
